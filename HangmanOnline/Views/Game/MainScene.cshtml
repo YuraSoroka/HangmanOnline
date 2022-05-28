@@ -1,0 +1,33 @@
+﻿@{
+    string word = @ViewData["word"].ToString();
+}
+
+<div class="player-one-hearths-container">
+@for(int i = 0; i < 5; i++)
+{
+    <img class="player-hearths" src="~/hearth.png" />
+}
+</div>
+
+<div class="player-two-hearths-container">
+@for(int i = 0; i < 5; i++)
+{
+    <img class="player-hearths" src="~/hearth.png" />
+}
+</div>
+
+<div class="logo">
+    <img src=~/hangman.png/>
+</div>
+
+
+<div class="letter-container">
+@foreach(char letter in word){
+        <div class="letter">@letter</div>
+}
+</div>
+
+<div class="input-container">
+    <input class="put-letter" type="text" maxlength=1/>
+    <a class="submit-btn">GO</a>
+</div>
