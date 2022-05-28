@@ -1,14 +1,13 @@
-﻿namespace HangmanOnline.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HangmanOnline.Models
 {
     public class Room
     {
+        [Key]
         public string Id { get; set; }
         public string Word { get; set; }
-
-        public Room(string id, string word)
-        {
-            Id = id;
-            Word = word;
-         }
+        public Player? PlayerOne { get; set; }
+        public Player? PlayerTwo { get; set; }
     }
 }

@@ -1,0 +1,10 @@
+﻿@model Models.Player
+
+@using (Html.BeginForm("CreatePlayer", "Game", FormMethod.Post))
+{
+    <div>
+        <h1>Enter your name</h1>
+        <input type="text" name="name"/>
+        <input type="submit" name="submit"/>
+    </div>
+}
