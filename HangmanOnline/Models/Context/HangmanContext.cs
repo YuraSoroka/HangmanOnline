@@ -13,5 +13,6 @@ namespace HangmanOnline.Models.Context
         }
 
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Player> Players { get; set; }
     }
 }

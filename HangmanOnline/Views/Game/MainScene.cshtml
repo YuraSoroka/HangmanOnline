@@ -1,16 +1,18 @@
-﻿@{
-    string word = @ViewData["word"].ToString();
-}
+﻿@using HangmanOnline.Models.ViewModels
+@model GameSession
+
 
 <div class="player-one-hearths-container">
-@for(int i = 0; i < 5; i++)
+    <h1>@Model.FirstPlayerName</h1>
+@for(int i = 0; i < @Model.FirstPlayerHearts; i++)
 {
     <img class="player-hearths" src="~/hearth.png" />
 }
 </div>
 
 <div class="player-two-hearths-container">
-@for(int i = 0; i < 5; i++)
+    <h1>@Model.SecondPlayerName</h1>
+@for(int i = 0; i < @Model.SecondPlayerHearts; i++)
 {
     <img class="player-hearths" src="~/hearth.png" />
 }
@@ -22,8 +24,8 @@
 
 
 <div class="letter-container">
-@foreach(char letter in word){
-        <div class="letter">@letter</div>
+@foreach(char letter in @Model.Word){
+        <div class="letter"></div>
 }
 </div>
 

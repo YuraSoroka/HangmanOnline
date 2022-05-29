@@ -1,25 +1,26 @@
 ﻿using HangmanOnline.Services.Helpers;
-using HangmanOnline.Models;
 using Microsoft.AspNetCore.Mvc;
 using HangmanOnline.Services;
 using HangmanOnline.Models.Context;
+using HangmanOnline.Services.Contracts;
+using HangmanOnline.Models.ViewModels;
 
 namespace HangmanOnline.Controllers
 {
     public class GameController : Controller
     {
         private readonly ILogger<GameController> logger;
-        private readonly HttpClient httpClient;
-        private readonly HangmanContext context;
+        private readonly IRoomService roomService;
+        private readonly ICoreService coreService;
 
         public GameController(
             ILogger<GameController> logger, 
-            HttpClient httpClient,
-            HangmanContext context)
+            IRoomService roomService,
+            ICoreService coreService)
         {
             this.logger = logger;
-            this.httpClient = httpClient;
-            this.context = context;
+            this.roomService = roomService;
+            this.coreService = coreService;
         }
 
         // game/room
@@ -42,29 +43,14 @@ namespace HangmanOnline.Controllers
         public IActionResult RenderScene([FromRoute] Guid roomId, string name)
         {
             logger.LogInformation("Redirected to RenderScene action");
-            CreateWordService service = new CreateWordService(httpClient);
-            string word = service.GetWord().Result;
-            Room room = new Room
-            {
-                Id = roomId.ToString(),
-                Word = word
-            };
 
-            context.Rooms.Add(new Room
+            if(!roomService.AddRoom(roomId, name))
             {
-                Id = roomId.ToString(),
-                Word = word,
-                PlayerOne = new Player
-                {
-                    Name = name,
-                    Health = 5
-                }
-            });
-            context.SaveChanges();
-
-            logger.LogInformation($"{room.Id} + { room.Word} + {name}");
-            ViewData["word"] = room.Word;
-            return View("MainScene");
+                logger.LogInformation("The room is full. Create another");
+                return RedirectToAction("Index", "Home");
+            }
+            GameSession gameSession = coreService.GetSession(roomId.ToString());
+            return View("MainScene", gameSession);
         }
 
         public IActionResult CreateRoomId()

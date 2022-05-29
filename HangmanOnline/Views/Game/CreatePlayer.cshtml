@@ -1,10 +1,8 @@
-﻿@model Models.Player
-
-@using (Html.BeginForm("CreatePlayer", "Game", FormMethod.Post))
+﻿@using (Html.BeginForm("CreatePlayer", "Game", FormMethod.Post))
 {
-    <div>
+    <div class="create-player-container">
         <h1>Enter your name</h1>
-        <input type="text" name="name"/>
-        <input type="submit" name="submit"/>
+        <input class="enter-name" type="text" name="name" required/>
+        <input class="submit-name" type="submit" name="submit" value="Play"/>
     </div>
 }

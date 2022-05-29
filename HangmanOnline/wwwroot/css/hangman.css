@@ -46,6 +46,41 @@ a.play-btn {
 }
 
 
+/* Create player styles*/
+
+
+.create-player-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.enter-name {
+    display: flex;
+    width: 200px;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 28px;
+}
+
+.submit-name {
+    display: block;
+    margin: 0 auto 0;
+    border-radius: 5px;
+    border: 2px solid green;
+    padding: 3px 18px;
+    font-size: 24px;
+    transition: 0.2s linear;
+}
+
+.submit-name:hover {
+    background-color:green;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
 /* MainScene styles */
 
 
@@ -71,13 +106,6 @@ a.play-btn {
     border-radius: 5px;
     justify-content: center;
     align-items: center;
-}
-
-.letter:hover {
-    color: rgb(254, 255, 234);
-    background-color: rgb(66, 64, 64);
-    transition: 0.1s ease-in-out;
-    cursor: pointer;
 }
 
 .input-container{
