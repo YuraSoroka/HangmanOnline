@@ -28,6 +28,29 @@ namespace HangmanOnline.Services
                 FirstPlayerHearts = firstPlayerHearts,
                 SecondPlayerName = secondPlayerName,
                 SecondPlayerHearts = secondPlayerHearts,
+                ContainsLetter = false,
+                Letter = string.Empty
+            };
+        }
+
+        public GameSession UpdateSession(string roomId , string guessedLetter)
+        {
+            Room currentRoom = context.Rooms.First(room => room.Id == roomId);
+            bool contains = false;
+
+            if (currentRoom.Word.Contains(guessedLetter))
+            {
+                contains = true;
+            }
+            return new GameSession
+            {
+                FirstPlayerName = currentRoom.PlayerOne.Name,
+                FirstPlayerHearts = currentRoom.PlayerOne.Health,
+                SecondPlayerName = currentRoom.PlayerTwo.Name,
+                SecondPlayerHearts = currentRoom.PlayerTwo.Health,
+                Word = currentRoom.Word,
+                Letter = guessedLetter,
+                ContainsLetter = contains
             };
         }
     }

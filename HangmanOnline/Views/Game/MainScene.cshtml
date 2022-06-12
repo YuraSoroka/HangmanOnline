@@ -1,21 +1,14 @@
 ﻿@using HangmanOnline.Models.ViewModels
 @model GameSession
 
-
 <div class="player-one-hearths-container">
-    <h1>@Model.FirstPlayerName</h1>
-@for(int i = 0; i < @Model.FirstPlayerHearts; i++)
-{
-    <img class="player-hearths" src="~/hearth.png" />
-}
+    <h1 id="playerOneName"></h1>
+    <div id="playerOneHealth"></div>
 </div>
 
 <div class="player-two-hearths-container">
-    <h1>@Model.SecondPlayerName</h1>
-@for(int i = 0; i < @Model.SecondPlayerHearts; i++)
-{
-    <img class="player-hearths" src="~/hearth.png" />
-}
+    <h1 id="playerTwoName"></h1>
+    <div id="playerTwoHealth"></div>
 </div>
 
 <div class="logo">
@@ -33,3 +26,6 @@
     <input class="put-letter" type="text" maxlength=1/>
     <a class="submit-btn">GO</a>
 </div>
+
+<script defer src="~/js/signalr/dist/browser/signalr.js"></script>
+<script defer src="~/js/hangman.js"></script>
