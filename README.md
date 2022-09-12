@@ -8,7 +8,7 @@
 
 >3. Enter a name and copy Url with created roomID.
 
->4. Paste in into the second clien window.
+>4. Paste in into the second client window.
 
 >5. Create second player.
 
